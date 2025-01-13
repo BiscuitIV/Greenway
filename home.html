@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenway - Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Greenway</h1>
+      <p>Promoting Sustainable Transportation at Design Tech High School</p>
+    </header>
 
+    <!-- Sign-Up Form -->
+    <form action="#" method="POST">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+      </div>
+
+      <!-- Student ID -->
+      <div class="form-group">
+        <label for="student-id">Student ID</label>
+        <input type="text" id="student-id" name="student-id" placeholder="Enter your student ID" required>
+      </div>
+
+      <!-- Select Up to 3 Most Used Forms of Transportation -->
+      <div class="form-group">
+        <label>Select Up to 3 Most Used Forms of Transportation</label> <!-- Updated label -->
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="transportation" value="biking"> Biking
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="walking"> Walking
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="public-transit"> Public Transit
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="carpooling"> Carpooling
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="electric-scooters"> Electric Scooters
+          </label>
+          <div class="error-message" id="transportation-error">
+            You can select up to 3 options.
+          </div>
+        </div>
+      </div>
+
+      <!-- Agreement Checkbox -->
+      <div class="form-group">
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="agreement" name="agreement" required>
+            I will not cheat or say that I used sustainable transportation on a day that I did not.
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Footer -->
+    <footer>
+      Already have an account? <a href="#">Log in</a>
+    </footer>
+  </div>
+
+  <script>
+    // Limit transportation options to 3
+    const transportationCheckboxes = document.querySelectorAll('input[name="transportation"]');
+    const transportationError = document.getElementById('transportation-error');
+
+    transportationCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
+
+        // Disable unchecked checkboxes if 3 are already selected
+        if (checkedCount >= 3) {
+          transportationCheckboxes.forEach((cb) => {
+            if (!cb.checked) {
+              cb.disabled = true;
+            }
+          });
+          transportationError.classList.remove('show');
+        } else {
+          transportationCheckboxes.forEach((cb) => {
+            cb.disabled = false;
+          });
+        }
+
+        // Show error if more than 3 are selected
+        if (checkedCount > 3) {
+          transportationError.classList.add('show');
+        } else {
+          transportationError.classList.remove('show');
+        }
+      });
+    });
+
+    // Form submission validation
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
+
+      // Prevent submission if more than 3 options are selected
+      if (checkedCount > 3) {
+        e.preventDefault();
+        transportationError.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>
