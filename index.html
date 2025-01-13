@@ -1,9 +1,12 @@
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Greenway - Sign Up</title>
+  <title>Greenway - Sustainable Transportation</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -14,114 +17,246 @@
       <p>Promoting Sustainable Transportation at Design Tech High School</p>
     </header>
 
-    <!-- Sign-Up Form -->
-    <form action="#" method="POST">
-      <!-- Email -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      </div>
+    <!-- Navigation -->
+    <nav>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#rewards">Rewards</a>
+      <a href="#map">Map</a>
+    </nav>
 
-      <!-- Full Name -->
-      <div class="form-group">
-        <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+    <!-- Map -->
+    <section id="map">
+      <h2>Interactive Map</h2>
+      <div class="map-container">
+        <div class="map">
+          <iframe
+            id="map-iframe"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4313%2C37.7081%2C-122.4009%2C37.7296&layer=mapnik&marker=37.7189,-122.4161"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <button class="fullscreen-button" onclick="toggleFullscreen()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+        </button>
       </div>
+    </section>
 
-      <!-- Student ID -->
-      <div class="form-group">
-        <label for="student-id">Student ID</label>
-        <input type="text" id="student-id" name="student-id" placeholder="Enter your student ID" required>
-      </div>
+    <!-- Leaderboard -->
+    <section id="leaderboard">
+      <h2>Leaderboard</h2>
 
-      <!-- Select Up to 3 Most Used Forms of Transportation -->
-      <div class="form-group">
-        <label>Select Up to 3 Most Used Forms of Transportation</label> <!-- Updated label -->
-        <div class="checkbox-group">
-          <label>
-            <input type="checkbox" name="transportation" value="biking"> Biking
-          </label>
-          <label>
-            <input type="checkbox" name="transportation" value="walking"> Walking
-          </label>
-          <label>
-            <input type="checkbox" name="transportation" value="public-transit"> Public Transit
-          </label>
-          <label>
-            <input type="checkbox" name="transportation" value="carpooling"> Carpooling
-          </label>
-          <label>
-            <input type="checkbox" name="transportation" value="electric-scooters"> Electric Scooters
-          </label>
-          <div class="error-message" id="transportation-error">
-            You can select up to 3 options.
+      <!-- Global Leaderboard -->
+      <div class="card">
+        <h3>Global Leaderboard</h3>
+        <div class="leaderboard">
+          <div class="leaderboard-item">
+            <span>1. Alex</span>
+            <span>42 days</span>
+          </div>
+          <div class="leaderboard-item">
+            <span>2. Jamie</span>
+            <span>38 days</span>
           </div>
         </div>
+        <details>
+          <summary>Show More</summary>
+          <div class="leaderboard">
+            <div class="leaderboard-item">
+              <span>3. Taylor</span>
+              <span>35 days</span>
+            </div>
+            <div class="leaderboard-item">
+              <span>4. Jordan</span>
+              <span>30 days</span>
+            </div>
+          </div>
+        </details>
       </div>
 
-      <!-- Agreement Checkbox -->
-      <div class="form-group">
-        <div class="checkbox-group">
-          <label>
-            <input type="checkbox" id="agreement" name="agreement" required>
-            I will not cheat or say that I used sustainable transportation on a day that I did not.
-          </label>
+      <!-- Biking Streaks Leaderboard -->
+      <details>
+        <summary>Biking Streaks</summary>
+        <div class="leaderboard">
+          <div class="leaderboard-item">
+            <span>1. Jordan</span>
+            <span>25 days</span>
+          </div>
+          <div class="leaderboard-item">
+            <span>2. Casey</span>
+            <span>20 days</span>
+          </div>
         </div>
+        <details>
+          <summary>Show More</summary>
+          <div class="leaderboard">
+            <div class="leaderboard-item">
+              <span>3. Riley</span>
+              <span>18 days</span>
+            </div>
+            <div class="leaderboard-item">
+              <span>4. Alex</span>
+              <span>15 days</span>
+            </div>
+          </div>
+        </details>
+      </details>
+
+      <!-- Walking Streaks Leaderboard -->
+      <details>
+        <summary>Walking Streaks</summary>
+        <div class="leaderboard">
+          <div class="leaderboard-item">
+            <span>1. Morgan</span>
+            <span>30 days</span>
+          </div>
+          <div class="leaderboard-item">
+            <span>2. Taylor</span>
+            <span>28 days</span>
+          </div>
+        </div>
+        <details>
+          <summary>Show More</summary>
+          <div class="leaderboard">
+            <div class="leaderboard-item">
+              <span>3. Alex</span>
+              <span>25 days</span>
+            </div>
+            <div class="leaderboard-item">
+              <span>4. Jamie</span>
+              <span>20 days</span>
+            </div>
+          </div>
+        </details>
+      </details>
+    </section>
+
+    <!-- Rewards -->
+    <section id="rewards">
+      <h2>Rewards</h2>
+
+      <!-- General Rewards -->
+      <div class="card">
+        <h3>General Rewards</h3>
+        <div class="rewards">
+          <div class="reward-card">
+            <h3>Eco Warrior</h3>
+            <p>10 days streak</p>
+          </div>
+          <div class="reward-card">
+            <h3>Green Hero</h3>
+            <p>30 days streak</p>
+          </div>
+        </div>
+        <details>
+          <summary>Show More</summary>
+          <div class="rewards">
+            <div class="reward-card">
+              <h3>Planet Saver</h3>
+              <p>50 days streak</p>
+            </div>
+            <div class="reward-card">
+              <h3>Eco Legend</h3>
+              <p>100 days streak</p>
+            </div>
+          </div>
+        </details>
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit">Sign Up</button>
-    </form>
+      <!-- Biking Rewards -->
+      <details>
+        <summary>Biking Rewards</summary>
+        <div class="card">
+          <div class="rewards">
+            <div class="reward-card">
+              <h3>Bike Beginner</h3>
+              <p>5 biking days</p>
+            </div>
+            <div class="reward-card">
+              <h3>Bike Enthusiast</h3>
+              <p>20 biking days</p>
+            </div>
+          </div>
+          <details>
+            <summary>Show More</summary>
+            <div class="rewards">
+              <div class="reward-card">
+                <h3>Bike Master</h3>
+                <p>50 biking days</p>
+              </div>
+              <div class="reward-card">
+                <h3>Bike Champion</h3>
+                <p>100 biking days</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
 
-    <!-- Footer -->
-    <footer>
-      Already have an account? <a href="#">Log in</a>
-    </footer>
+      <!-- Walking Rewards -->
+      <details>
+        <summary>Walking Rewards</summary>
+        <div class="card">
+          <div class="rewards">
+            <div class="reward-card">
+              <h3>Step Starter</h3>
+              <p>5 walking days</p>
+            </div>
+            <div class="reward-card">
+              <h3>Step Explorer</h3>
+              <p>20 walking days</p>
+            </div>
+          </div>
+          <details>
+            <summary>Show More</summary>
+            <div class="rewards">
+              <div class="reward-card">
+                <h3>Step Adventurer</h3>
+                <p>50 walking days</p>
+              </div>
+              <div class="reward-card">
+                <h3>Step Legend</h3>
+                <p>100 walking days</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </details>
+    </section>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Greenway. Promoting a greener future.
+  </footer>
+
   <script>
-    // Limit transportation options to 3
-    const transportationCheckboxes = document.querySelectorAll('input[name="transportation"]');
-    const transportationError = document.getElementById('transportation-error');
-
-    transportationCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
-
-        // Disable unchecked checkboxes if 3 are already selected
-        if (checkedCount >= 3) {
-          transportationCheckboxes.forEach((cb) => {
-            if (!cb.checked) {
-              cb.disabled = true;
-            }
-          });
-          transportationError.classList.remove('show');
-        } else {
-          transportationCheckboxes.forEach((cb) => {
-            cb.disabled = false;
-          });
+    // Fullscreen functionality
+    function toggleFullscreen() {
+      const mapIframe = document.getElementById('map-iframe');
+      if (!document.fullscreenElement) {
+        if (mapIframe.requestFullscreen) {
+          mapIframe.requestFullscreen();
+        } else if (mapIframe.mozRequestFullScreen) { // Firefox
+          mapIframe.mozRequestFullScreen();
+        } else if (mapIframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+          mapIframe.webkitRequestFullscreen();
+        } else if (mapIframe.msRequestFullscreen) { // IE/Edge
+          mapIframe.msRequestFullscreen();
         }
-
-        // Show error if more than 3 are selected
-        if (checkedCount > 3) {
-          transportationError.classList.add('show');
-        } else {
-          transportationError.classList.remove('show');
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
         }
-      });
-    });
-
-    // Form submission validation
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
-      const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
-
-      // Prevent submission if more than 3 options are selected
-      if (checkedCount > 3) {
-        e.preventDefault();
-        transportationError.classList.add('show');
       }
-    });
+    }
   </script>
 </body>
 </html>
