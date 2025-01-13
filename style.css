@@ -1,24 +1,13 @@
-/* <uniquifier>: Use a unique and descriptive class name
-/* <weight>: Use a value from 100 to 900 */
-
-.roboto-<uniquifier> {
-  font-family: "Roboto", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: 300;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
   background-color: #121212;
   color: #e0e0e0;
   display: flex;
@@ -67,12 +56,13 @@ nav {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
+  width: 420px;
   background: rgba(44, 44, 44, 0.8);
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 16px;
   backdrop-filter: blur(20px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  flex-wrap: wrap; /* Ensures the navbar wraps on smaller screens */
+  flex-wrap: wrap;
 }
 
 nav a {
@@ -82,7 +72,7 @@ nav a {
   padding: 8px 12px;
   border-radius: 8px;
   transition: background 0.3s ease, color 0.3s ease;
-  margin: 4px; /* Adds spacing between items */
+  margin: 4px;
 }
 
 nav a:hover {
@@ -90,7 +80,6 @@ nav a:hover {
   color: #6fcf97;
 }
 
-/* Responsive adjustments */
 @media (max-width: 600px) {
   nav {
     flex-direction: column;
@@ -102,291 +91,240 @@ nav a:hover {
   }
 }
 
-/* Rest of the CSS remains the same */
-/* Sections, Cards, Leaderboard, Rewards, Map, Footer, etc. */
-// <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900
-
-.roboto-<uniquifier> {
-  font-family: "Roboto", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+/* Sections */
+section {
+  margin-bottom: 20px;
 }
 
- body {
-      margin: 0;
-      padding: 0;
-      font-family: "Roboto", serif;
-      font-optical-sizing: auto;
-      font-weight: <weight>;
-      font-style: normal;
-      font-variation-settings:
-      "wdth" 100;
-      background-color: #121212;
-      color: #e0e0e0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+section h2 {
+  font-size: 18px;
+  color: #4caf50;
+  margin-bottom: 12px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #4caf50, #8bc34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    /* Container */
-    .container {
-      width: 100%;
-      max-width: 400px;
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 16px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      margin: 20px;
-      padding: 20px;
-    }
+/* Cards */
+.card {
+  background: rgba(44, 44, 44, 0.8);
+  padding: 16px;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  margin-bottom: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    /* Header */
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
 
-    header h1 {
-      font-size: 24px;
-      color: #4caf50;
-      margin: 0;
-      font-weight: 700;
-      background: linear-gradient(45deg, #4caf50, #8bc34a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* Leaderboard */
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    header p {
-      font-size: 14px;
-      color: #9e9e9e;
-      margin: 4px 0 0;
-    }
+.leaderboard-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(44, 44, 44, 0.8);
+  padding: 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
 
-    /* Navigation */
-    nav {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-      background: rgba(44, 44, 44, 0.8);
-      padding: 10px;
-      border-radius: 12px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
+.leaderboard-item:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
 
-    nav a {
-      color: #4caf50;
-      text-decoration: none;
-      font-size: 14px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+.leaderboard-item span {
+  font-size: 14px;
+  color: #e0e0e0;
+}
 
-    nav a:hover {
-      background: rgba(76, 175, 80, 0.1);
-      color: #6fcf97;
-    }
+.leaderboard-item span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    /* Sections */
-    section {
-      margin-bottom: 20px;
-    }
+.leaderboard-item span:first-child::before {
+  content: "🏆";
+  font-size: 16px;
+}
 
-    section h2 {
-      font-size: 18px;
-      color: #4caf50;
-      margin-bottom: 12px;
-      font-weight: 600;
-      background: linear-gradient(45deg, #4caf50, #8bc34a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* Dropdown Leaderboards */
+details {
+  margin-bottom: 12px;
+}
 
-    /* Cards */
-    .card {
-      background: rgba(44, 44, 44, 0.8);
-      padding: 16px;
-      border-radius: 12px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      margin-bottom: 16px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+details summary {
+  font-size: 14px;
+  color: #4caf50;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(44, 44, 44, 0.8);
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    }
+details summary:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
 
-    /* Leaderboard */
-    .leaderboard {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+details[open] summary {
+  margin-bottom: 8px;
+}
 
-    .leaderboard-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(44, 44, 44, 0.8);
-      padding: 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s ease;
-    }
+details[open] .leaderboard,
+details[open] .rewards {
+  margin-top: 8px;
+}
 
-    .leaderboard-item:hover {
-      background: rgba(76, 175, 80, 0.1);
-    }
+/* Rewards */
+.rewards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
 
-    .leaderboard-item span {
-      font-size: 14px;
-      color: #e0e0e0;
-    }
+.reward-card {
+  background: rgba(44, 44, 44, 0.8);
+  padding: 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .leaderboard-item span:first-child {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+.reward-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
 
-    .leaderboard-item span:first-child::before {
-      content: "🏆";
-      font-size: 16px;
-    }
+.reward-card h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: #4caf50;
+  font-weight: 600;
+  background: linear-gradient(45deg, #4caf50, #8bc34a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-    /* Dropdown Leaderboards */
-    details {
-      margin-bottom: 12px;
-    }
+.reward-card p {
+  font-size: 12px;
+  margin: 0;
+  color: #9e9e9e;
+}
 
-    details summary {
-      font-size: 14px;
-      color: #4caf50;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 8px 12px;
-      background: rgba(44, 44, 44, 0.8);
-      border-radius: 8px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s ease;
-    }
+/* Map */
+.map-container {
+  position: relative;
+}
 
-    details summary:hover {
-      background: rgba(76, 175, 80, 0.1);
-    }
+.map {
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
 
-    details[open] summary {
-      margin-bottom: 8px;
-    }
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
-    /* Fix spacing in dropdowns */
-    details[open] .leaderboard,
-    details[open] .rewards {
-      margin-top: 8px;
-    }
+/* Fullscreen Button */
+.fullscreen-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(44, 44, 44, 0.8);
+  color: #4caf50;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
 
-    /* Rewards */
-    .rewards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
+.fullscreen-button:hover {
+  background: rgba(76, 175, 80, 0.1);
+  transform: scale(1.1);
+}
 
-    .reward-card {
-      background: rgba(44, 44, 44, 0.8);
-      padding: 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+.fullscreen-button svg {
+  width: 16px;
+  height: 16px;
+}
 
-    .reward-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
+/* Activity */
+.activity{
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
 
-    .reward-card h3 {
-      font-size: 14px;
-      margin: 0 0 8px;
-      color: #4caf50;
-      font-weight: 600;
-      background: linear-gradient(45deg, #4caf50, #8bc34a);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.activity-container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    .reward-card p {
-      font-size: 12px;
-      margin: 0;
-      color: #9e9e9e;
-    }
+.activity-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4caf50;
+  padding: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
 
-    /* Map */
-    .map-container {
-      position: relative;
-    }
+.activity-card:hover {
+  background: rgba(76, 175, 80, 0.1);
+}
 
-    .map {
-      height: 180px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
+.activity-card span {
+  font-size: 18px;
+  color: #e0e0e0;
+}
 
-    .map iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+.activity-card span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    /* Fullscreen Button */
-    .fullscreen-button {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(44, 44, 44, 0.8);
-      color: #4caf50;
-      border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
-    .fullscreen-button:hover {
-      background: rgba(76, 175, 80, 0.1);
-      transform: scale(1.1);
-    }
-
-    .fullscreen-button svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      margin-top: auto;
-      padding: 16px;
-      font-size: 12px;
-      color: #9e9e9e;
-    }
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 16px;
+  font-size: 12px;
+  color: #9e9e9e;
+}
