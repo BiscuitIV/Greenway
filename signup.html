@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenway - Sign Up</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      margin: 20px;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #4caf50;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4caf50, #8bc34a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #9e9e9e;
+      margin: 4px 0 0;
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      color: #e0e0e0;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(44, 44, 44, 0.8);
+      color: #e0e0e0;
+      font-size: 14px;
+      backdrop-filter: blur(20px);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #4caf50;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    }
+
+    .form-group .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #e0e0e0;
+    }
+
+    .form-group .checkbox-group input {
+      width: 16px;
+      height: 16px;
+      accent-color: #4caf50;
+    }
+
+    .form-group .checkbox-group input:disabled {
+      opacity: 0.5;
+    }
+
+    .form-group .checkbox-group .error-message {
+      font-size: 12px;
+      color: #ff6b6b;
+      display: none;
+    }
+
+    .form-group .checkbox-group .error-message.show {
+      display: block;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(45deg, #4caf50, #8bc34a);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #9e9e9e;
+    }
+
+    footer a {
+      color: #4caf50;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Greenway</h1>
+      <p>Promoting Sustainable Transportation at Design Tech High School</p>
+    </header>
+
+    <!-- Sign-Up Form -->
+    <form action="#" method="POST">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+      </div>
+
+      <!-- Student ID -->
+      <div class="form-group">
+        <label for="student-id">Student ID</label>
+        <input type="text" id="student-id" name="student-id" placeholder="Enter your student ID" required>
+      </div>
+
+      <!-- Select Up to 3 Most Used Forms of Transportation -->
+      <div class="form-group">
+        <label>Select Up to 3 Most Used Forms of Transportation</label> <!-- Updated label -->
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="transportation" value="biking"> Biking
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="walking"> Walking
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="public-transit"> Public Transit
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="carpooling"> Carpooling
+          </label>
+          <label>
+            <input type="checkbox" name="transportation" value="electric-scooters"> Electric Scooters
+          </label>
+          <div class="error-message" id="transportation-error">
+            You can select up to 3 options.
+          </div>
+        </div>
+      </div>
+
+      <!-- Agreement Checkbox -->
+      <div class="form-group">
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" id="agreement" name="agreement" required>
+            I will not cheat or say that I used sustainable transportation on a day that I did not.
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Footer -->
+    <footer>
+      Already have an account? <a href="#">Log in</a>
+    </footer>
+  </div>
+
+  <script>
+    // Limit transportation options to 3
+    const transportationCheckboxes = document.querySelectorAll('input[name="transportation"]');
+    const transportationError = document.getElementById('transportation-error');
+
+    transportationCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
+
+        // Disable unchecked checkboxes if 3 are already selected
+        if (checkedCount >= 3) {
+          transportationCheckboxes.forEach((cb) => {
+            if (!cb.checked) {
+              cb.disabled = true;
+            }
+          });
+          transportationError.classList.remove('show');
+        } else {
+          transportationCheckboxes.forEach((cb) => {
+            cb.disabled = false;
+          });
+        }
+
+        // Show error if more than 3 are selected
+        if (checkedCount > 3) {
+          transportationError.classList.add('show');
+        } else {
+          transportationError.classList.remove('show');
+        }
+      });
+    });
+
+    // Form submission validation
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
+
+      // Prevent submission if more than 3 options are selected
+      if (checkedCount > 3) {
+        e.preventDefault();
+        transportationError.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>
