@@ -305,10 +305,6 @@ details[open] .rewards {
   transition: background 0.3s ease;
 }
 
-.activity-card:hover {
-  background: rgba(76, 175, 80, 0.1);
-}
-
 .activity-card span {
   font-size: 18px;
   color: #e0e0e0;
