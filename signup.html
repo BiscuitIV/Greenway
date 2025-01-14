@@ -276,11 +276,17 @@
     const form = document.querySelector('form');
     form.addEventListener('submit', (e) => {
       const checkedCount = document.querySelectorAll('input[name="transportation"]:checked').length;
+      const agreementChecked = document.querySelector('#agreement').checked;
 
-      // Prevent submission if more than 3 options are selected
-      if (checkedCount > 3) {
+      // Prevent submission if more than 3 options are selected or if the agreement is not checked
+      if (checkedCount > 3 || !agreementChecked) {
         e.preventDefault();
-        transportationError.classList.add('show');
+        if (!agreementChecked) {
+          alert("You must agree to the terms before submitting.");
+        }
+        if (checkedCount > 3) {
+          transportationError.classList.add('show');
+        }
       }
     });
   </script>
