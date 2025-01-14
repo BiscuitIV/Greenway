@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenway - Progress</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 400px; /* Adjusted to match the previous page */
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      margin: 20px;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #4caf50;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(45deg, #4caf50, #8bc34a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #9e9e9e;
+      margin: 4px 0 0;
+    }
+
+    /* Progress Stats */
+    .progress-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: rgba(44, 44, 44, 0.8);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat h2 {
+      font-size: 18px;
+      color: #4caf50;
+      margin: 0 0 8px;
+    }
+
+    .stat p {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* Graph */
+    .graph {
+      background: rgba(44, 44, 44, 0.8);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .graph h2 {
+      font-size: 18px;
+      color: #4caf50;
+      margin: 0 0 16px;
+    }
+
+    .graph-placeholder {
+      height: 300px; /* Increased height for better visibility */
+      border-radius: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #9e9e9e;
+    }
+
+    footer a {
+      color: #4caf50;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Greenway</h1>
+      <p>Your Sustainable Commute Progress</p>
+    </header>
+
+    <!-- Progress Stats -->
+    <div class="progress-stats">
+      <div class="stat">
+        <h2>Total Commutes</h2>
+        <p id="total-commutes">150</p>
+      </div>
+      <div class="stat">
+        <h2>Green Points</h2>
+        <p id="green-points">1500</p>
+      </div>
+      <div class="stat">
+        <h2>Leaderboard Place</h2>
+        <p id="leaderboard-place">#5</p>
+      </div>
+      <div class="stat">
+        <h2>Current Streak</h2>
+        <p id="current-streak">7 days</p>
+      </div>
+    </div>
+
+    <!-- Graph -->
+    <div class="graph">
+      <h2>Sustainable Commutes Per Week (This Year)</h2>
+      <div class="graph-placeholder">
+        <canvas id="commute-graph"></canvas>
+      </div>
+    </div>
+
+    <!-- Carbon Emissions Saved -->
+    <div class="stat">
+      <h2>Carbon Emissions Saved</h2>
+      <p id="carbon-saved">750 kg CO₂</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <a href="#">Back to Dashboard</a>
+    </footer>
+  </div>
+
+  <script>
+    // Mock Data (Replace with real data from backend)
+    const totalCommutes = 150; // Total commutes this year
+    const greenPoints = 1500; // Green points earned this year
+    const leaderboardPlace = "#5"; // Leaderboard rank
+    const currentStreak = "7 days"; // Current streak
+    const carbonSaved = "750 kg CO₂"; // Carbon emissions saved
+
+    // Update DOM with mock data
+    document.getElementById("total-commutes").textContent = totalCommutes;
+    document.getElementById("green-points").textContent = greenPoints;
+    document.getElementById("leaderboard-place").textContent = leaderboardPlace;
+    document.getElementById("current-streak").textContent = currentStreak;
+    document.getElementById("carbon-saved").textContent = carbonSaved;
+
+    // Graph Data for the Year (Grouped by Weeks)
+    const ctx = document.getElementById("commute-graph").getContext("2d");
+
+    // Labels for weeks of the year (e.g., Week 1, Week 2, ..., Week 52)
+    const weeksInYear = 52;
+    const labels = Array.from({ length: weeksInYear }, (_, i) => `Week ${i + 1}`);
+
+    // Mock data: Random number of commutes per week (0 to 7)
+    const commuteData = Array.from({ length: weeksInYear }, () => Math.floor(Math.random() * 8));
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Sustainable Commutes",
+          data: commuteData,
+          backgroundColor: "#4caf50",
+          borderColor: "#4caf50",
+          borderWidth: 1,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 7, // Maximum of 7 commutes per week
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+            },
+            ticks: {
+              color: "#e0e0e0",
+              stepSize: 1, // Ensure only whole numbers are shown
+            },
+          },
+          x: {
+            grid: {
+              color: "rgba(255, 255, 255, 0.1)",
+            },
+            ticks: {
+              color: "#e0e0e0",
+              autoSkip: true,
+              maxTicksLimit: 12, // Show 12 labels for better readability
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: "#e0e0e0",
+            },
+          },
+        },
+      },
+    });
+  </script>
+</body>
+</html>
