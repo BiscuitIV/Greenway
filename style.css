@@ -150,6 +150,25 @@ section h2 {
   margin: 0;
 }
 
+ /* Graph */
+.graph {
+  background: rgba(44, 44, 44, 0.8);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.graph h2 {
+  font-size: 18px;
+  color: #4caf50;
+  margin: 0 0 16px;
+}
+
+.graph-placeholder {
+  height: 300px; /* Increased height for better visibility */
+  border-radius: 8px;
+}
+
 /* Leaderboard */
 .leaderboard {
   display: flex;
