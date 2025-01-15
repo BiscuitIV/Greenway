@@ -132,6 +132,12 @@ section h2 {
   text-decoration: none;
 }
 
+stat a,
+.stat h2 a,
+.stat p a {
+    text-decoration: none !important;
+}
+
 .stat {
   background: rgba(44, 44, 44, 0.8);
   border-radius: 8px;
