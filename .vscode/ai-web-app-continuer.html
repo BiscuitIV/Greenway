@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Web App Continuer</title>
+  <style>
+    /* Dark mode styling */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #bb86fc;
+      text-align: center;
+      margin-bottom: 10px; /* Spacing below the title */
+    }
+
+    .description {
+      text-align: center;
+      color: #e0e0e0;
+      margin-bottom: 30px; /* Spacing below the description */
+      font-size: 1.1em;
+      line-height: 1.5;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px; /* Add horizontal padding to the container */
+    }
+
+    /* Input and textarea styling */
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px; /* Spacing below inputs and textareas */
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      color: #e0e0e0;
+      border-radius: 5px;
+      box-sizing: border-box; /* Ensure padding is included in width */
+    }
+
+    /* Specific spacing for the project description label */
+    label {
+      display: block; /* Ensure the label is on its own line */
+      margin-bottom: 10px; /* Spacing below the label */
+      font-weight: bold;
+      color: #bb86fc; /* Match the theme color */
+    }
+
+    /* Button styling */
+    .buttons {
+      display: flex;
+      gap: 10px; /* Spacing between buttons */
+      margin-bottom: 20px; /* Spacing below buttons */
+    }
+
+    button {
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .add-button {
+      background-color: #bb86fc;
+      color: #121212;
+    }
+
+    .add-button:hover {
+      background-color: #9a67ea;
+    }
+
+    .generate-button {
+      background-color: #03dac6;
+      color: #121212;
+    }
+
+    .generate-button:hover {
+      background-color: #018786;
+    }
+
+    .copy-button {
+      background-color: #03dac6;
+      color: #121212;
+      display: none; /* Hidden by default */
+    }
+
+    .copy-button:hover {
+      background-color: #018786;
+    }
+
+    .clear-button {
+      background-color: #ff4444;
+      color: #ffffff;
+    }
+
+    .clear-button:hover {
+      background-color: #cc0000;
+    }
+
+    .file-section {
+      margin-bottom: 20px;
+    }
+
+    .file-section h3 {
+      color: #bb86fc;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .remove-button {
+      background-color: #ff4444;
+      color: #ffffff;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    .remove-button:hover {
+      background-color: #cc0000;
+    }
+
+    .output {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Web App Continuer</h1>
+    <!-- Description under the main title -->
+    <div class="description">
+      Tired of hitting the AI chat limit while developing a web app? This tool lets you continue where you left off by saving AI-generated files and descriptions. It generates a prompt to help the AI pick up right where it stopped.
+    </div>
+
+    <!-- Description Field -->
+    <label for="description">Project Description:</label>
+    <textarea id="description" rows="4" placeholder="Enter a general description of the project..."></textarea>
+
+    <!-- File Sections -->
+    <div id="file-sections">
+      <div class="file-section">
+        <h3>File 1</h3>
+        <button class="remove-button" onclick="removeFile(1)">Remove File</button>
+        <input type="text" class="file-name" placeholder="File Name (e.g., home.html)">
+        <textarea class="file-contents" rows="6" placeholder="Paste file contents here..."></textarea>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="add-button" onclick="addFile()">Add File</button>
+      <button class="generate-button" onclick="generatePrompt()">Generate Prompt</button>
+      <button class="copy-button" onclick="copyPrompt()">Copy Prompt</button>
+      <button class="clear-button" onclick="clearAll()">Clear All</button>
+    </div>
+
+    <!-- Generated Prompt Output -->
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    let fileCount = 1;
+    let generatedPrompt = "";
+
+    // Add a new file section
+    function addFile() {
+      fileCount++;
+      const fileSection = document.createElement('div');
+      fileSection.className = 'file-section';
+      fileSection.innerHTML = `
+        <h3>File ${fileCount}</h3>
+        <button class="remove-button" onclick="removeFile(${fileCount})">Remove File</button>
+        <input type="text" class="file-name" placeholder="File Name (e.g., home.html)">
+        <textarea class="file-contents" rows="6" placeholder="Paste file contents here..."></textarea>
+      `;
+      document.getElementById('file-sections').appendChild(fileSection);
+    }
+
+    // Remove a specific file section
+    function removeFile(fileNumber) {
+      if (fileCount > 1) {
+        const fileSections = document.getElementById('file-sections');
+        const sections = fileSections.querySelectorAll('.file-section');
+        sections.forEach((section) => {
+          if (section.querySelector('h3').textContent === `File ${fileNumber}`) {
+            fileSections.removeChild(section);
+            fileCount--;
+          }
+        });
+      }
+    }
+
+    // Generate the prompt
+    function generatePrompt() {
+      const description = document.getElementById('description').value;
+      const fileNames = document.querySelectorAll('.file-name');
+      const fileContents = document.querySelectorAll('.file-contents');
+
+      generatedPrompt = `You are working on "${description}". Here are the files you will be working with. Do not alter them for now—just save them for later.\n\n`;
+
+      fileNames.forEach((name, index) => {
+        generatedPrompt += `File ${index + 1} Name:\n\`\`\`\n${name.value}\n\`\`\`\n`;
+        generatedPrompt += `File ${index + 1} Contents:\n\`\`\`\n${fileContents[index].value}\n\`\`\`\n\n`;
+      });
+
+      // Display the prompt
+      const output = document.getElementById('output');
+      output.textContent = generatedPrompt;
+
+      // Show the "Copy Prompt" button
+      document.querySelector('.copy-button').style.display = 'inline-block';
+    }
+
+    // Copy the prompt to the clipboard
+    function copyPrompt() {
+      navigator.clipboard.writeText(generatedPrompt).then(() => {
+        alert('Prompt copied to clipboard!');
+      });
+    }
+
+    // Clear all fields and reset the app
+    function clearAll() {
+      // Reset the project description
+      document.getElementById('description').value = '';
+
+      // Remove all file sections except the first one
+      const fileSections = document.getElementById('file-sections');
+      while (fileSections.children.length > 1) {
+        fileSections.removeChild(fileSections.lastChild);
+      }
+
+      // Reset the first file section
+      const firstFileSection = fileSections.querySelector('.file-section');
+      firstFileSection.querySelector('.file-name').value = '';
+      firstFileSection.querySelector('.file-contents').value = '';
+
+      // Reset the file count
+      fileCount = 1;
+
+      // Clear the generated prompt
+      const output = document.getElementById('output');
+      output.textContent = '';
+
+      // Hide the "Copy Prompt" button
+      document.querySelector('.copy-button').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
