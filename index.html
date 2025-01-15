@@ -49,25 +49,6 @@
       </a>
     </section>
 
-    <!-- Map -->
-    <section id="map">
-      <h2>Interactive Map</h2>
-      <div class="map-container">
-        <div class="map">
-          <iframe
-            id="map-iframe"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4313%2C37.7081%2C-122.4009%2C37.7296&layer=mapnik&marker=37.7189,-122.4161"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <button class="fullscreen-button" onclick="toggleFullscreen()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
-          </svg>
-        </button>
-      </div>
-    </section>
-
     <!-- Leaderboard -->
     <section id="leaderboard">
       <h2>Leaderboard</h2>
@@ -257,31 +238,7 @@
   </footer>
 
   <script>
-    // Fullscreen functionality
-    function toggleFullscreen() {
-      const mapIframe = document.getElementById('map-iframe');
-      if (!document.fullscreenElement) {
-        if (mapIframe.requestFullscreen) {
-          mapIframe.requestFullscreen();
-        } else if (mapIframe.mozRequestFullScreen) { // Firefox
-          mapIframe.mozRequestFullScreen();
-        } else if (mapIframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
-          mapIframe.webkitRequestFullscreen();
-        } else if (mapIframe.msRequestFullscreen) { // IE/Edge
-          mapIframe.msRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
-          document.msExitFullscreen();
-        }
-      }
-    }
+    // Fullscreen functionality (removed as it was related to the map)
   </script>
 </body>
 </html>
