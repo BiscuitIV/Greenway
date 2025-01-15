@@ -124,31 +124,31 @@ section h2 {
 }
 
 /* Activity */
-    .progress-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 20px;
-    }
+.progress-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
 
-    .stat {
-      background: rgba(44, 44, 44, 0.8);
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-    }
+.stat {
+  background: rgba(44, 44, 44, 0.8);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
 
-    .stat h2 {
-      font-size: 18px;
-      color: #4caf50;
-      margin: 0 0 8px;
-    }
+.stat h2 {
+  font-size: 18px;
+  color: #4caf50;
+  margin: 0 0 8px;
+}
 
-    .stat p {
-      font-size: 24px;
-      font-weight: 600;
-      margin: 0;
-    }
+.stat p {
+   font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
 
 /* Leaderboard */
 .leaderboard {
