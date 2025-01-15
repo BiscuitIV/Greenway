@@ -132,6 +132,16 @@ section h2 {
   text-decoration: none;
 }
 
+.home-reference{
+  text-decoration: none;
+  color: #e0e0e0;
+}
+
+.home-reference a {
+  text-decoration: none;
+  color: #e0e0e0;
+}
+
 stat a,
 .stat h2 a,
 .stat p a {
