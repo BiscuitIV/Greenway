@@ -132,15 +132,15 @@ section h2 {
   text-decoration: none;
 }
 
-.progress-stats a {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-bottom: 20px;
+.stat {
+  background: rgba(44, 44, 44, 0.8);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
   text-decoration: none;
 }
 
-.stat {
+.stat a {
   background: rgba(44, 44, 44, 0.8);
   border-radius: 8px;
   padding: 16px;
@@ -155,7 +155,21 @@ section h2 {
   text-decoration: none;
 }
 
+.stat h2 a {
+  font-size: 18px;
+  color: #4caf50;
+  margin: 0 0 8px;
+  text-decoration: none;
+}
+
 .stat p {
+   font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  text-decoration: none;
+}
+
+.stat p a {
    font-size: 24px;
   font-weight: 600;
   margin: 0;
