@@ -132,6 +132,14 @@ section h2 {
   text-decoration: none;
 }
 
+.progress-stats a {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
 .stat {
   background: rgba(44, 44, 44, 0.8);
   border-radius: 8px;
