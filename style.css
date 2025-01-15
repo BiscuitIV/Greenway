@@ -547,3 +547,61 @@ button[type="submit"]:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
 }
+/* Plan Your Commute Section */
+#plan-commute {
+  margin-bottom: 20px;
+}
+
+#plan-commute .card {
+  background: rgba(44, 44, 44, 0.8);
+  padding: 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#plan-commute .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.plan-commute-content {
+  text-align: center;
+}
+
+.plan-commute-content i {
+  font-size: 48px;
+  color: #4caf50;
+  margin-bottom: 16px;
+}
+
+.plan-commute-content p {
+  font-size: 16px;
+  color: #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.plan-commute-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #4caf50, #8bc34a);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plan-commute-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.plan-commute-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+}
