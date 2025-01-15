@@ -129,6 +129,7 @@ section h2 {
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 20px;
+  text-decoration: none;
 }
 
 .stat {
@@ -136,18 +137,21 @@ section h2 {
   border-radius: 8px;
   padding: 16px;
   text-align: center;
+  text-decoration: none;
 }
 
 .stat h2 {
   font-size: 18px;
   color: #4caf50;
   margin: 0 0 8px;
+  text-decoration: none;
 }
 
 .stat p {
    font-size: 24px;
   font-weight: 600;
   margin: 0;
+  text-decoration: none;
 }
 
  /* Graph */
