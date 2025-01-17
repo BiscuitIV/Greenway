@@ -43,8 +43,30 @@ db.query(`
   }
 });
 
+// Middleware to check if user is already signed up
+const checkIfUserExists = (req, res, next) => {
+  const { email, studentId } = req.body;
+
+  const query = `
+    SELECT * FROM users WHERE email = ? OR studentId = ?
+  `;
+  db.query(query, [email, studentId], (err, results) => {
+    if (err) {
+      console.error('Error checking user:', err);
+      return res.status(500).json({ message: 'Error checking user data' });
+    }
+
+    if (results.length > 0) {
+      return res.status(400).json({ message: 'User already exists with this email or student ID.' });
+    }
+
+    // If user doesn't exist, proceed to the next middleware/route handler
+    next();
+  });
+};
+
 // Signup Endpoint
-app.post('/signup', (req, res) => {
+app.post('/signup', checkIfUserExists, (req, res) => {
   const { email, fullName, studentId, transportation, agreement } = req.body;
 
   // Validate transportation array length
