@@ -1,63 +1,73 @@
-// Import dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const mysql = require('mysql2');
+const cors = require('cors');
 
-// Initialize the Express app
 const app = express();
-const port = 3000;  // You can change the port
+const port = 3000;
 
-// Middleware to parse incoming form data
-app.use(bodyParser.urlencoded({ extended: true }));
+// Middleware
 app.use(bodyParser.json());
+app.use(cors());
 
-// Connect to MongoDB (replace <db-uri> with your MongoDB URI)
-mongoose.connect('<your-mongodb-uri>', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-// Define the schema for the form data
-const formSchema = new mongoose.Schema({
-  email: String,
-  fullName: String,
-  studentId: String,
-  transportation: [String],  // Array of selected transportation modes
-  agreement: Boolean,
+// MySQL Connection
+const db = mysql.createConnection({
+  host: 'localhost', // Replace with your MySQL host
+  user: 'root',      // Replace with your MySQL username
+  password: 'password', // Replace with your MySQL password
+  database: 'greenway', // Replace with your database name
 });
 
-// Create a model based on the schema
-const FormData = mongoose.model('FormData', formSchema);
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database');
+});
 
-// Serve the static HTML file
-app.use(express.static('public'));
+// Create users table if it doesn't exist
+db.query(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    fullName VARCHAR(255) NOT NULL,
+    studentId VARCHAR(255) NOT NULL UNIQUE,
+    transportation JSON,
+    agreement BOOLEAN,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )
+`, (err) => {
+  if (err) {
+    console.error('Error creating users table:', err);
+  }
+});
 
-// Handle form submissions
-app.post('/submit', async (req, res) => {
+// Signup Endpoint
+app.post('/signup', (req, res) => {
   const { email, fullName, studentId, transportation, agreement } = req.body;
 
+  // Validate transportation array length
   if (transportation.length > 3) {
     return res.status(400).json({ message: 'You can select up to 3 transportation options only.' });
   }
 
-  if (!agreement) {
-    return res.status(400).json({ message: 'You must agree to the terms before submitting.' });
-  }
-
-  // Create a new document with the form data
-  const formData = new FormData({
-    email,
-    fullName,
-    studentId,
-    transportation,
-    agreement,
-  });
-
-  try {
-    await formData.save();
-    res.status(200).json({ message: 'Form submitted successfully!' });
-  } catch (err) {
-    res.status(500).json({ message: 'Error saving data', error: err });
-  }
+  // Insert user into the database
+  const query = `
+    INSERT INTO users (email, fullName, studentId, transportation, agreement)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+  db.query(
+    query,
+    [email, fullName, studentId, JSON.stringify(transportation), agreement],
+    (err, results) => {
+      if (err) {
+        console.error('Error inserting user:', err);
+        return res.status(500).json({ message: 'Error saving user data' });
+      }
+      res.status(200).json({ message: 'Signup successful!' });
+    }
+  );
 });
 
 // Start the server
