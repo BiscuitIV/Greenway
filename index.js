@@ -35,6 +35,9 @@ db.query(`
     studentId VARCHAR(255) NOT NULL UNIQUE,
     transportation JSON,
     agreement BOOLEAN,
+    totalCommutes INT DEFAULT 0,
+    currentStreak INT DEFAULT 0,
+    totalGreenPoints INT DEFAULT 0,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
 `, (err) => {
@@ -43,53 +46,31 @@ db.query(`
   }
 });
 
-// Middleware to check if user is already signed up
-const checkIfUserExists = (req, res, next) => {
-  const { email, studentId } = req.body;
+// Endpoint to log a commute
+app.post('/log-commute', (req, res) => {
+  const { transportationMethod, greenPoints } = req.body;
 
+  // For now, we'll assume the user ID is 1 (you can replace this with actual user authentication)
+  const userId = 1;
+
+  // Update user stats
   const query = `
-    SELECT * FROM users WHERE email = ? OR studentId = ?
+    UPDATE users
+    SET
+      totalCommutes = totalCommutes + 1,
+      currentStreak = currentStreak + 1,
+      totalGreenPoints = totalGreenPoints + ?
+    WHERE id = ?
   `;
-  db.query(query, [email, studentId], (err, results) => {
+
+  db.query(query, [greenPoints, userId], (err, results) => {
     if (err) {
-      console.error('Error checking user:', err);
-      return res.status(500).json({ message: 'Error checking user data' });
+      console.error('Error updating user stats:', err);
+      return res.status(500).json({ message: 'Error logging commute' });
     }
 
-    if (results.length > 0) {
-      return res.status(400).json({ message: 'User already exists with this email or student ID.' });
-    }
-
-    // If user doesn't exist, proceed to the next middleware/route handler
-    next();
+    res.status(200).json({ message: 'Commute logged successfully!' });
   });
-};
-
-// Signup Endpoint
-app.post('/signup', checkIfUserExists, (req, res) => {
-  const { email, fullName, studentId, transportation, agreement } = req.body;
-
-  // Validate transportation array length
-  if (transportation.length > 3) {
-    return res.status(400).json({ message: 'You can select up to 3 transportation options only.' });
-  }
-
-  // Insert user into the database
-  const query = `
-    INSERT INTO users (email, fullName, studentId, transportation, agreement)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-  db.query(
-    query,
-    [email, fullName, studentId, JSON.stringify(transportation), agreement],
-    (err, results) => {
-      if (err) {
-        console.error('Error inserting user:', err);
-        return res.status(500).json({ message: 'Error saving user data' });
-      }
-      res.status(200).json({ message: 'Signup successful!' });
-    }
-  );
 });
 
 // Start the server
