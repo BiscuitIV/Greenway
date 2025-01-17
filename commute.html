@@ -147,7 +147,7 @@
       opacity: 0.8;
     }
 
-        /* Navigation */
+    /* Navigation */
     nav {
       display: flex;
       justify-content: space-around;
@@ -160,7 +160,7 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
       flex-wrap: wrap;
     }
-    
+
     nav a {
       color: #4caf50;
       text-decoration: none;
@@ -171,12 +171,11 @@
       transition: background 0.3s ease, color 0.3s ease;
       margin: 4px;
     }
-    
+
     nav a:hover {
       background: rgba(76, 175, 80, 0.1);
       color: #6fcf97;
     }
-    
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -191,7 +190,7 @@
     <a href="activity.html">My Activity</a>
     <a href="commute.html">Log Commute</a>
   </nav>
-  
+
   <div class="container">
     <!-- Header -->
     <header>
@@ -246,7 +245,7 @@
     const form = document.getElementById("log-commute-form");
     const greenPointsDisplay = document.getElementById("green-points-display");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       // Get selected transportation method
@@ -255,10 +254,33 @@
       // Calculate Green Points
       const greenPoints = greenPointsMap[transportationMethod] || 0;
 
-      // Display Green Points
-      greenPointsDisplay.textContent = `You earned ${greenPoints} Green Points!`;
+      // Send data to the backend
+      try {
+        const response = await fetch('/log-commute', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            transportationMethod,
+            greenPoints,
+          }),
+        });
 
-      // Reset form after submission (optional)
+        const result = await response.json();
+
+        if (response.ok) {
+          // Display Green Points
+          greenPointsDisplay.textContent = `You earned ${greenPoints} Green Points!`;
+          alert('Commute logged successfully!');
+        } else {
+          alert(`Error: ${result.message}`);
+        }
+      } catch (error) {
+        alert('An error occurred. Please try again.');
+      }
+
+      // Reset form after submission
       form.reset();
     });
   </script>
