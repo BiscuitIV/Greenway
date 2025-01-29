@@ -197,66 +197,11 @@
       <h1>Greenway</h1>
       <p>Log Your Sustainable Commute</p>
     </header>
-
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdze87M0me-uTw9WKAxmdJCgOhiqxjQKsuLRD3iE_cPOdWzXQ/viewform?embedded=true" width="400" height="626" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
     <!-- Footer -->
     <footer>
       <a href="index.html">Back to Home</a>
     </footer>
   </div>
-
-  <script>
-    // Green Points Calculation
-    const greenPointsMap = {
-      biking: 10,
-      walking: 8,
-      "public-transit": 6,
-      carpooling: 4,
-      "electric-scooters": 5,
-    };
-
-    const form = document.getElementById("log-commute-form");
-    const greenPointsDisplay = document.getElementById("green-points-display");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Get selected transportation method
-      const transportationMethod = document.getElementById("transportation-method").value;
-
-      // Calculate Green Points
-      const greenPoints = greenPointsMap[transportationMethod] || 0;
-
-      // Send data to the backend
-      try {
-        const response = await fetch('/log-commute', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            transportationMethod,
-            greenPoints,
-          }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          // Display Green Points
-          greenPointsDisplay.textContent = `You earned ${greenPoints} Green Points!`;
-          alert('Commute logged successfully!');
-        } else {
-          alert(`Error: ${result.message}`);
-        }
-      } catch (error) {
-        alert('An error occurred. Please try again.');
-      }
-
-      // Reset form after submission
-      form.reset();
-    });
-  </script>
 </body>
 </html>
